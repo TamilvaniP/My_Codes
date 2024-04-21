@@ -1,0 +1,52 @@
+import java.util.*;
+
+public class Main
+{
+	public static void leftToright(int[][] mat,int sr,int sc,int ec){
+         for(int i=sc;i<=ec;i++){
+             System.out.print(mat[sr][i]+" ");
+         }
+    }
+    public static void topTobottom(int[][] mat,int ec,int sr,int er){
+        for(int i=sr;i<=er;i++){
+            System.out.print(mat[i][ec]+" ");
+        }
+    }
+    public static void rightToleft(int[][] mat,int er,int ec,int sc){
+        for(int i=ec;i>=sc;i--){
+            System.out.print(mat[er][i]+" ");
+        }
+    }
+    public static void bottomTotop(int[][] mat,int sc,int er,int sr){
+        for(int i=er;i>=sr;i--){
+            System.out.print(mat[i][sc]+" ");
+        }
+    }
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        int m=sc.nextInt();
+        int n=sc.nextInt();
+        int[][] mat=new int[m][n];
+        for(int i=0;i<m;i++){
+            for(int j=0;j<n;j++){
+                mat[i][j]=sc.nextInt();
+            }
+        }
+        int sr=0,er=m-1,sco=0,ec=n-1;
+        while(sr<=er||sco<=ec){
+            leftToright(mat,sr,sco,ec);
+            topTobottom(mat,ec,sr+1,er);
+            if(sr!=er){
+                rightToleft(mat,er,ec-1,sco);
+            }
+            if(sco!=ec){
+                bottomTotop(mat,sco,er-1,sr+1);
+            }
+            sr++;
+            er--;
+            sco++;
+            ec--;
+        }
+    }
+}
+
